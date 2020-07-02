@@ -4,11 +4,10 @@ ARG branch
 RUN nix-env -iA nixpkgs.git
 RUN nix-env -iA nixpkgs.git-lfs
 
+RUN git lfs install
 RUN git clone --branch ${branch} --depth 1 https://github.com/urbit/urbit.git /tmp/urbit
 
 WORKDIR /tmp/urbit
-
-RUN git lfs install
 RUN git lfs pull
 
 RUN nix-env -f . -iA urbit -iA herb
