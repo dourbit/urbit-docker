@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SHIP="$1"
+SHIP="$1"; shift
 : ${URBIT_IMAGE:="asssaf/urbit:latest"}
 
 if [ -z "$SHIP" ]
@@ -14,4 +14,4 @@ docker run -ti --rm \
 	-v $(pwd)/${SHIP}:/srv/${SHIP} \
 	--workdir /srv \
 	--user $(id -u):$(id -g) \
-	${URBIT_IMAGE} ${SHIP}
+	${URBIT_IMAGE} ${SHIP} $@
